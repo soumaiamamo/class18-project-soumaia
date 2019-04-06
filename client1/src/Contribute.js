@@ -3,7 +3,11 @@ import React from 'react';
 class Contribute extends React.Component {
 
   render() {
-    return (console.log("Contribute"));
+    return (
+
+      <h1>Contribute </h1>
+
+    );
   }
 }
 
