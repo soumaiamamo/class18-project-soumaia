@@ -38,8 +38,13 @@ class App extends Component {
 
             <Route exact path="/" component={Home} />
             <Route path="/list/houses" component={ListHouses} />
+<<<<<<< HEAD
             <Route path="/contribute" component={AddHouses} />
             <Route path="/house/view" component={HouseView} />
+=======
+            <Route path="/contribute" component={Contribute} />
+            <Route path="/house/vieuw" component={HouseVieuw} />
+>>>>>>> 32a02cbcf2b6c24af7847bd08e6ca995166c2036
 
           </Switch>
 
