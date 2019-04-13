@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./Home";
 import ListHouses from "./ListHouses";
-import Contribute from "./Contribute";
-import HouseVieuw from "./HouseVieuw";
+import HouseView from "./HouseView";
+import AddHouses from './AddHouses';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,23 +23,23 @@ class App extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="houses">houses</Link>
+              <Link to="/houses">houses</Link>
             </li>
             <li>
               <Link to="/contribute">contribute</Link>
             </li>
             <li>
-              <Link to="/house/vieuw"> House Vieuw</Link>
+              <Link to="/house/view"> House Vieuw</Link>
 
             </li>
           </ul>
 
           <Switch>
 
-            <Route exact path="/" Component={Home} />
-            <Route path="/list/houses" Component={ListHouses} />
-            <Route path="/contribute" Component={Contribute} />
-            <Route path="/house/vieuw" Component={HouseVieuw} />
+            <Route exact path="/" component={Home} />
+            <Route path="/list/houses" component={ListHouses} />
+            <Route path="/contribute" component={AddHouses} />
+            <Route path="/house/view" component={HouseView} />
 
           </Switch>
 

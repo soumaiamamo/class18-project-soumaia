@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "price": 5000,
+    "description": "5 rooms"
+  },
+  {
+    "id": 2,
+    "price": 100000,
+    "description": "3 rooms"
+  },
+  {
+    "id": 3,
+    "price": 30000,
+    "description": "2 rooms"
+  }
+]
