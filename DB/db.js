@@ -1,9 +1,9 @@
 var mysql = require('mysql');
-// const { promisify } = require('util');
-const db = require("../DB/db");
+const { promisify } = require('util');
 
 
-var connection = mysql.createConnection({
+
+var db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -13,9 +13,11 @@ var connection = mysql.createConnection({
 
 
 
-// connection.connect(function (error) {
-//   if (error) throw error;
-// });
+db.connect(function (error) {
+  if (error) throw error;
+});
 
-// db.quaryPromis = promisify(db.quary);
-module.exports = connection
+
+const queryPromise = promisify(db.query.bind(db));
+
+module.exports = db; 

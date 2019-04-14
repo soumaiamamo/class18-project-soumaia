@@ -43,15 +43,15 @@ const validHouse = (houseObject) => {
 
     });
 
-    if (!validator.isURL(houseObject['link'])) {
+    if (!validator.isURL(`${houseObject['link']}`)) {
       valid = false;
-      error.push(`link : must be valid URL`);
+      errors.push(`link : must be valid URL`);
     }
 
 
-    if (!validator.isNumeric(houseObject['link'])) {
+    if (!validator.isNumeric(`${houseObject['link']}`)) {
       valid = false;
-      error.push(`price_value: wrongn numeric value `);
+      errors.push(`price_value: wrongn numeric value `);
     }
   }
 

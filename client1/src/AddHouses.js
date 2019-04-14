@@ -2,15 +2,15 @@ import React from 'react';
 
 
 
-let report = null;
 
 class AddHouses extends React.Component {
-
-  state = {
-
-    error: null
-
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      report: null,
+    };
+  }
 
   componentDidMount() {
 
@@ -25,11 +25,11 @@ class AddHouses extends React.Component {
     // console.log(this.dataInput.value);
 
 
-    fetch("http://localhost:8080/houses", {
+    fetch("/api/houses", {
       method: "POST",
-      mode: 'no-cors',
+      // mode: 'no-cors',
       body: this.dataInput.value,
-      headers: { "content-type": "api/json" }
+      headers: { "content-type": "application/json" }
     })
       .then((res => res.json()))
       .then((data) => {
@@ -37,7 +37,7 @@ class AddHouses extends React.Component {
           this.setState({ error: data.error })
         } else {
 
-          report = data;
+          this.state.report = data;
           this.forceUpdate();
         }
       }).catch((err) => {
@@ -58,7 +58,7 @@ class AddHouses extends React.Component {
 
         <button type="submit">submit</button>
         <br />
-        {!!report && <div> report </div>}
+        {!!error && <div> error </div>}
       </form>
     );
   }

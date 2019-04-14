@@ -9,15 +9,15 @@ const { validHouse } = require("./validation");
 function update() {
   axios.get('http://pastebin.com/raw/WQBCgk0W').then((res) => {
 
-    Console.log(res.data.map(validHouse));
-  });
+    console.log(res.data.map(validHouse));
+  }).catch((err) => { console.log(err) })
 }
 
 setInterval(update, 60 * 1000);
 
 update();
 
-// const processedData = DATA.map((houseObject) => {
+// const processedData = data.map((houseObject) => {
 //   return validHouse(houseObject);
 // });
 // console.log(processedData);

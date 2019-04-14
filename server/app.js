@@ -38,13 +38,16 @@ app.get("/api", apiRouter);
 
 app.get("/houses", function (req, res) {
   res.send(fakeDB);
-})
+});
+
 
 app.post("/houses", async (req, res) => {
   if (!Array.isArray(req.body)) {
 
     // throw new Error("data should be an array ");
-    res.status(400).json({ error: "data should be an arrays" })
+    return res.status(400).json({ error: "data should be an arrays" })
+
+
   }
   const processedData = req.body.map((houseObject) => {
     return validHouse(houseObject);
