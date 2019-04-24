@@ -15,5 +15,22 @@
     "title": "RE",
     "images": "",
     "sold": 1
+  },
+  {
+    "link": "www.twitter.com",
+    "market_date": "01-01-2018",
+    "location_country": "syria",
+    "location_city": "damascus",
+    "location_address": "sdf",
+    "location_coordinates_lat": 1.233445,
+    "location_coordinates_lng": 2.676677,
+    "size_living_area": 5,
+    "size_rooms": 5,
+    "price_value": 1000,
+    "price_currency": "EUR",
+    "description": "WER",
+    "title": "RE",
+    "images": "cgxfr",
+    "sold": 1
   }
 ]

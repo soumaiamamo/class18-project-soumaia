@@ -25,7 +25,7 @@ class AddHouses extends React.Component {
     console.log(this.dataInput.value);
 
 
-    fetch(`http://  localhost:8080/houses`, {
+    fetch(`/houses`, {
       method: 'POST',
       mode: 'no-cors',
       body: this.dataInput.value,
@@ -37,8 +37,10 @@ class AddHouses extends React.Component {
           this.setState({ error: data.error });
         } else {
 
-          this.state.report = data;
-          this.forceUpdate();
+          this.setState({ error: null, report: data });
+
+          // this.state.report = data;
+          // this.forceUpdate();
         }
       })
       .catch((err) => {
@@ -62,7 +64,7 @@ class AddHouses extends React.Component {
 
         {!!report && <Report report={report} />}
 
-        {/* {!!error && <div> error </div>} */}
+        {!!error && <div> error </div>}
 
       </form>
 

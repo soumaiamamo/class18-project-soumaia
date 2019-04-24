@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const apiRouter = require("./api/index");
+//const apiRouter = require("./api/index");
 const db = require('./api/db')
 const { houseAsSqlParams, validHouse } = require("./validation");
 const app = express();
+const apiRouter = require('express').Router();
 
 
 
@@ -13,24 +14,42 @@ let houseId = 3;
 
 
 let fakeDB = [
-  {
-    id: 1,
-    price: 5000,
-    description: "5 rooms"
 
+  {
+    "link": "www.facebook.com",
+    "market_date": "01-01-2019",
+    "location_country": "syria",
+    "location_city": "damascus",
+    "location_address": "sdf",
+    "location_coordinates_lat": 1.233445,
+    "location_coordinates_lng": 2.676677,
+    "size_living_area": 5,
+    "size_rooms": 5,
+    "price_value": 1000,
+    "price_currency": "EUR",
+    "description": "WER",
+    "title": "RE",
+    "images": "",
+    "sold": 1
   },
   {
-    id: 2,
-    price: 100000,
-    description: "3 rooms"
-
-
-
-  }, {
-    id: 3,
-    price: 30000,
-    description: "2 rooms"
+    "link": "www.twitter.com",
+    "market_date": "01-01-2018",
+    "location_country": "syria",
+    "location_city": "damascus",
+    "location_address": "sdf",
+    "location_coordinates_lat": 1.233445,
+    "location_coordinates_lng": 2.676677,
+    "size_living_area": 5,
+    "size_rooms": 5,
+    "price_value": 1000,
+    "price_currency": "EUR",
+    "description": "WER",
+    "title": "RE",
+    "images": "cgxfr",
+    "sold": 1
   }
+
 ]
 const addHousesSql = `replace into houses (
    link ,
@@ -58,7 +77,7 @@ app.get("/houses", function (req, res) {
 });
 
 
-app.post("/houses", async (req, res) => {
+app.post('/houses', async (req, res) => {
   if (!Array.isArray(req.body)) {
 
     return res.status(400).json({ error: "data should be an array" })
@@ -67,9 +86,8 @@ app.post("/houses", async (req, res) => {
   }
 
 
-  const processedData = req.body.map((houseObject) => {
-    return validHouse(houseObject);
-  });
+  const processedData = req.body.map(validHouse);
+
 
 
   console.log(processedData);
