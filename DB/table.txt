@@ -1,5 +1,5 @@
 CREATE TABLE houses (
-id int PRIMARY KEY,
+id int AUTO_INCREMENT PRIMARY KEY,
 link varchar(255) NOT NULL UNIQUE,
 market_date date NOT NULL,
 location_country varchar(50) NOT NULL,
@@ -18,17 +18,16 @@ sold int
 );
 
 [{
-"id" : 5,
 "link" :"www.facebook.com",
 "market_date" : "01-01-2019",
 "location_country" :"syria",
-"location_city" : "damascuc",
+"location_city" : "damascus",
 "location_address" : "sdf",
-"location_coordinates_lat" :"hgf",
-"location_coordinates_lng" :"rtt",
+"location_coordinates_lat" : 10,
+"location_coordinates_lng" :5,
 "size_living_area" : 5,
 "size_rooms" : 5,
-"price_value": "uytr",
+"price_value": 1000,
 "price_currency" : "EUR",
 "description" : "WER" ,
 "title" : "RE",

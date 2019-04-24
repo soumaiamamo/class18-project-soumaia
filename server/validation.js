@@ -4,8 +4,6 @@ const validator = require('validator');
 
 const requiredFields = [
 
-
-  'id',
   'link',
   'market_date',
   'location_country',
@@ -21,8 +19,6 @@ const requiredFields = [
   'title',
   'images text',
   'sold'
-
-
 ];
 
 
@@ -33,12 +29,15 @@ const validHouse = (houseObject) => {
 
   if (typeof houseObject !== 'object') {
     valid = false;
-    errors.push('house shoile be an object')
+
+    errors.push('house should be an object')
+
   } else {
     requiredFields.forEach(field => {
       if (typeof houseObject[field] === "undefiend") {
-        errors.push(`${field}: is required`)
         valid = false;
+        errors.push(`${field}: is required`)
+
       }
 
     });
@@ -49,10 +48,21 @@ const validHouse = (houseObject) => {
     }
 
 
-    if (!validator.isNumeric(`${houseObject['link']}`)) {
+    if (!validator.isNumeric(`${houseObject['price_value']}`)) {
       valid = false;
       errors.push(`price_value: wrongn numeric value `);
     }
+
+    if (!validator.isAlpha(`${houseObject['location_country']}`)) {
+      valid = false;
+      errors.push(`location_country: wrongn `);
+    }
+
+    if (!validator.isAlpha(`${houseObject['location_city']}`)) {
+      valid = false;
+      errors.push(`price_value: wrongn numeric value `);
+    }
+
   }
 
 
@@ -63,4 +73,11 @@ const validHouse = (houseObject) => {
   };
 };
 
-module.exports = { validHouse };
+const houseForSqlQuery = houseObject => {
+  return requiredFields.map(field => houseObject[field]);
+};
+module.exports = {
+  validHouse,
+  houseForSqlQuery,
+};
+

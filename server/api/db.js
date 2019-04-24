@@ -19,5 +19,6 @@ db.connect(function (error) {
 
 
 const queryPromise = promisify(db.query.bind(db));
+//or//db.queryPromise = promisify(db.query);
 
 module.exports = db; 

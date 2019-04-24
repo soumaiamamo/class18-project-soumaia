@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const apiRouter = require("./api");
-const db = require("../DB/db");
-const { validHouse } = require("./validation");
+const apiRouter = require("./api/index");
+const db = require('./api/db')
+const { houseAsSqlParams, validHouse } = require("./validation");
 const app = express();
 
 
@@ -32,6 +32,23 @@ let fakeDB = [
     description: "2 rooms"
   }
 ]
+const addHousesSql = `replace into houses (
+   link ,
+   market_date,
+   location_country,
+   location_city ,
+   location_address,
+   location_coordinates_lat,
+   location_coordinates_lng,
+   size_living_area,
+   size_rooms,
+   price_value,
+   price_currency,
+   description,
+   title,
+   images,
+   sold
+   ) values ?`;
 
 
 app.get("/api", apiRouter);
@@ -44,19 +61,26 @@ app.get("/houses", function (req, res) {
 app.post("/houses", async (req, res) => {
   if (!Array.isArray(req.body)) {
 
-    // throw new Error("data should be an array ");
-    return res.status(400).json({ error: "data should be an arrays" })
+    return res.status(400).json({ error: "data should be an array" })
 
 
   }
+
+
   const processedData = req.body.map((houseObject) => {
     return validHouse(houseObject);
   });
 
+
+  console.log(processedData);
+  res.json({ ok: 1 });
+
+
+
   const validData = [];
   const invalidData = [];
 
-  processedData.foreach(
+  processedData.forEach(
     el => {
       if (el.valid) {
         validData.push(el);
@@ -73,10 +97,11 @@ app.post("/houses", async (req, res) => {
 
   if (validData.length) {
     try {
-
+      db.connect();
       const houseData = validData.map((el) => { houseAsSqlParams(el.raw) });
       await db.queryPromise(addHousesSql, [houseData]);
 
+      db.end();
 
       return res.json(report);
 

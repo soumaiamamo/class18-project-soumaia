@@ -1,29 +1,33 @@
-const app = require("./app");
-
-const axios = require('axios');
-
+const app = require('./app');
 const PORT = 8080;
+// const axios = ('axios');
+// const { validHouse } = require("./validation");
 
-const { validHouse } = require("./validation");
 
-function update() {
-  axios.get('http://pastebin.com/raw/WQBCgk0W').then((res) => {
 
-    console.log(res.data.map(validHouse));
-  }).catch((err) => { console.log(err) })
-}
 
-setInterval(update, 60 * 1000);
 
-update();
+// function pastebin() {
 
-// const processedData = data.map((houseObject) => {
-//   return validHouse(houseObject);
-// });
-// console.log(processedData);
+//   axios.get('https://pastebin.com/raw/Z6uSUMEy').then((res) => {
+//     console.clear();
+//     console.log(res.data.map(validHouse));
 
+//   }).catch(error => {
+//     console.log({ error: error.message });
+//   });
+
+
+
+
+// }
+
+// setInterval(pastebin, 60 * 1000);
+
+// pastebin();
 
 app.listen(PORT, () => {
 
   console.log(`app is running at http://localhost:${PORT}`);
 });
+
