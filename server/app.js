@@ -89,9 +89,9 @@ app.post('/houses', async (req, res) => {
 
 
 
-  console.log(processedData);
+  // console.log(processedData);
 
-  res.json({ ok: 1 });
+  // res.json({ ok: 1 });
 
 
 
@@ -115,11 +115,11 @@ app.post('/houses', async (req, res) => {
 
   if (validData.length) {
     try {
-      // db.connect();
+
       const houseData = validData.map((el) => { houseForSqlQuery(el.raw) });
       await db.queryPromise(addHousesSql, [houseData]);
 
-      // db.end();
+
 
       return res.json(report);
 

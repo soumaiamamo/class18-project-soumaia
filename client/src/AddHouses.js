@@ -70,7 +70,7 @@ class AddHouses extends React.Component {
         <button type="submit">submit</button>
         <br />
 
-        {/* {!!report && <Report report={report} />} */}
+        {!!report && <Report report={report} />}
 
       </form>
 
@@ -79,26 +79,26 @@ class AddHouses extends React.Component {
 }
 
 
-// let Report = ({ report }) => (
+let Report = ({ report }) => (
 
 
-//   <div>
+  <div>
 
-//     valid houses : {report.valid}
+    valid houses : {report.valid}
 
-//     invalid houses ({report.invalid.length}):
+    invalid houses ({report.invalid.length}):
 
-//     {report.invalid.map((data) => (
-//       <div>
-//         message :{''}
+    {report.invalid.map((data) => (
+      <div>
+        message :{''}
 
-//         <pre> {JSON.stringify(data.errors, null, 2)}</pre>
-//         raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>
+        <pre> {JSON.stringify(data.errors, null, 2)}</pre>
+        raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>
 
-//       </div>
-//     ))}
+      </div>
+    ))}
 
-//   </div>
-// );
+  </div>
+);
 
 export default AddHouses;
