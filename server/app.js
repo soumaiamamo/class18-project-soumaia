@@ -2,86 +2,85 @@ const express = require("express");
 const bodyParser = require("body-parser");
 //const apiRouter = require("./api/index");
 const db = require('./api/db')
-const { houseAsSqlParams, validHouse } = require("./validation");
+const { houseForSqlQuery, validHouse } = require("./validation");
 const app = express();
 const apiRouter = require('express').Router();
 
 
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-let houseId = 3;
-
-
-let fakeDB = [
-
-  {
-    "link": "www.facebook.com",
-    "market_date": "01-01-2019",
-    "location_country": "syria",
-    "location_city": "damascus",
-    "location_address": "sdf",
-    "location_coordinates_lat": 1.233445,
-    "location_coordinates_lng": 2.676677,
-    "size_living_area": 5,
-    "size_rooms": 5,
-    "price_value": 1000,
-    "price_currency": "EUR",
-    "description": "WER",
-    "title": "RE",
-    "images": "",
-    "sold": 1
-  },
-  {
-    "link": "www.twitter.com",
-    "market_date": "01-01-2018",
-    "location_country": "syria",
-    "location_city": "damascus",
-    "location_address": "sdf",
-    "location_coordinates_lat": 1.233445,
-    "location_coordinates_lng": 2.676677,
-    "size_living_area": 5,
-    "size_rooms": 5,
-    "price_value": 1000,
-    "price_currency": "EUR",
-    "description": "WER",
-    "title": "RE",
-    "images": "cgxfr",
-    "sold": 1
-  }
-
-]
-const addHousesSql = `replace into houses (
-   link ,
-   market_date,
-   location_country,
-   location_city ,
-   location_address,
-   location_coordinates_lat,
-   location_coordinates_lng,
-   size_living_area,
-   size_rooms,
-   price_value,
-   price_currency,
-   description,
-   title,
-   images,
-   sold
-   ) values ?`;
+// let houseId = 3;
 
 
-app.get("/api", apiRouter);
+// let fakeDB = [
 
-app.get("/houses", function (req, res) {
-  res.send(fakeDB);
-});
+//   {
+//     "link": "www.facebook.com",
+//     "market_date": "01-01-2019",
+//     "location_country": "syria",
+//     "location_city": "damascus",
+//     "location_address": "sdf",
+//     "location_coordinates_lat": 1.233445,
+//     "location_coordinates_lng": 2.676677,
+//     "size_living_area": 5,
+//     "size_rooms": 5,
+//     "price_value": 1000,
+//     "price_currency": "EUR",
+//     "description": "WER",
+//     "title": "RE",
+//     "images": "",
+//     "sold": 1
+//   },
+//   {
+//     "link": "www.twitter.com",
+//     "market_date": "01-01-2018",
+//     "location_country": "syria",
+//     "location_city": "damascus",
+//     "location_address": "sdf",
+//     "location_coordinates_lat": 1.233445,
+//     "location_coordinates_lng": 2.676677,
+//     "size_living_area": 5,
+//     "size_rooms": 5,
+//     "price_value": 1000,
+//     "price_currency": "EUR",
+//     "description": "WER",
+//     "title": "RE",
+//     "images": "cgxfr",
+//     "sold": 1
+//   }
+
+// ]
+const addHousesSql = `REPLACE INTO houses (
+  link ,
+  market_date,
+  location_country,
+  location_city ,
+  location_address,
+  location_coordinates_lat,
+  location_coordinates_lng,
+  size_living_area,
+  size_rooms,
+  price_value,
+  price_currency,
+  description,
+  title,
+  images,
+  sold
+  ) values ?`;
+
+
+// app.get("/api", apiRouter);
+
+// app.get("/houses", function (req, res) {
+//   res.send(fakeDB);
+// });
 
 
 app.post('/houses', async (req, res) => {
   if (!Array.isArray(req.body)) {
 
     return res.status(400).json({ error: "data should be an array" })
-
 
   }
 
@@ -91,6 +90,7 @@ app.post('/houses', async (req, res) => {
 
 
   console.log(processedData);
+
   res.json({ ok: 1 });
 
 
@@ -115,11 +115,11 @@ app.post('/houses', async (req, res) => {
 
   if (validData.length) {
     try {
-      db.connect();
-      const houseData = validData.map((el) => { houseAsSqlParams(el.raw) });
+      // db.connect();
+      const houseData = validData.map((el) => { houseForSqlQuery(el.raw) });
       await db.queryPromise(addHousesSql, [houseData]);
 
-      db.end();
+      // db.end();
 
       return res.json(report);
 
@@ -131,6 +131,11 @@ app.post('/houses', async (req, res) => {
     res.json(report);
 
   }
+});
+
+
+app.use('*', (req, res) => {
+  res.status(404).end();
 });
 
 
@@ -166,27 +171,27 @@ app.post('/houses', async (req, res) => {
 
 
 
-app.get("/houses/:id", function (req, res) {
-  const { id } = req.params;
+// app.get("/houses/:id", function (req, res) {
+//   const { id } = req.params;
 
-  const item = fakeDB.find((house) => {
-    return house.id === parseInt(id, 10);
-  });
-  if (item) {
-    res.json(item)
-  } else {
-    res.send("there are no houses with this id ")
-  }
-})
+//   const item = fakeDB.find((house) => {
+//     return house.id === parseInt(id, 10);
+//   });
+//   if (item) {
+//     res.json(item)
+//   } else {
+//     res.send("there are no houses with this id ")
+//   }
+// })
 
-app.delete("/houses/:id", function (req, res) {
+// app.delete("/houses/:id", function (req, res) {
 
-  let { id } = req.params;
+//   let { id } = req.params;
 
-  fakeDB = fakeDB.filter((item) => item.id !== parseInt(id, 10))
+//   fakeDB = fakeDB.filter((item) => item.id !== parseInt(id, 10))
 
 
-})
+// })
 
 
 module.exports = app;

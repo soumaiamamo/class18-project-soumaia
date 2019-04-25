@@ -14,7 +14,7 @@ class ListHouses extends React.Component {
   }
   componentDidMount() {
     this.setState({ loading: true });
-    fetch('http://localhost:8080/houses')
+    fetch('/houses')
       .then(data => data.json())
       .then(list =>
         this.setState({

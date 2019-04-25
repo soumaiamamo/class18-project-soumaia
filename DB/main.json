@@ -1,7 +1,7 @@
 [
   {
     "link": "www.facebook.com",
-    "market_date": "01-01-2019",
+    "market_date": "2008-11-11",
     "location_country": "syria",
     "location_city": "damascus",
     "location_address": "sdf",
@@ -9,7 +9,7 @@
     "location_coordinates_lng": 2.676677,
     "size_living_area": 5,
     "size_rooms": 5,
-    "price_value": 1000,
+    "price_value": 1,
     "price_currency": "EUR",
     "description": "WER",
     "title": "RE",
@@ -18,7 +18,7 @@
   },
   {
     "link": "www.twitter.com",
-    "market_date": "01-01-2018",
+    "market_date": "2008-11-11",
     "location_country": "syria",
     "location_city": "damascus",
     "location_address": "sdf",
@@ -26,11 +26,11 @@
     "location_coordinates_lng": 2.676677,
     "size_living_area": 5,
     "size_rooms": 5,
-    "price_value": 1000,
+    "price_value": 1.565,
     "price_currency": "EUR",
     "description": "WER",
     "title": "RE",
-    "images": "cgxfr",
+    "images": "",
     "sold": 1
   }
 ]

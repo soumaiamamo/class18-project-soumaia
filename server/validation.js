@@ -3,7 +3,6 @@ const validator = require('validator');
 
 
 const requiredFields = [
-
   'link',
   'market_date',
   'location_country',
@@ -17,10 +16,9 @@ const requiredFields = [
   'price_currency',
   'description',
   'title',
-  'images text',
-  'sold'
+  'images',
+  'sold',
 ];
-
 
 const validHouse = (houseObject) => {
   let valid = true;
@@ -76,6 +74,8 @@ const validHouse = (houseObject) => {
 const houseForSqlQuery = houseObject => {
   return requiredFields.map(field => houseObject[field]);
 };
+
+
 module.exports = {
   validHouse,
   houseForSqlQuery,

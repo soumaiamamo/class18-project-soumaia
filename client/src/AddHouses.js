@@ -1,16 +1,16 @@
 import React from 'react';
 
-let report = null;
 
-
+//let report = null;
 class AddHouses extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      report: null,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this
+  state = {
+    error: null,
+    report: null,
+  };
+
 
   componentDidMount() {
 
@@ -25,13 +25,14 @@ class AddHouses extends React.Component {
     console.log(this.dataInput.value);
 
 
-    fetch(`/houses`, {
+    fetch('/houses', {
       method: 'POST',
-      mode: 'no-cors',
-      body: this.dataInput.value,
-      headers: { 'content-type': 'application/json' }
+      // mode: 'no-cors',
+      headers: { 'content-type': 'application/json' },
+      body: this.dataInput.value
     })
       .then((res) => res.json())
+
       .then((data) => {
         if (data.error) {
           this.setState({ error: data.error });
@@ -39,32 +40,37 @@ class AddHouses extends React.Component {
 
           this.setState({ error: null, report: data });
 
-          // this.state.report = data;
-          // this.forceUpdate();
+          this.state.report = data;
+          this.forceUpdate();
         }
       })
       .catch((err) => {
-        this.setState({ error: err.massage });
+        this.setState({ error: err.massage })
 
       });
   };
 
-  render() {
-    console.count(`render`);
 
-    const { error } = this.state;
+  render() {
+    // console.count(`render`);
+
+    const { error, report } = this.state;
+
     return (
       <form onSubmit={this.onSubmit}>
-        <textarea ref={(input) => this.dataInput = input} />
+        <textarea ref={input => (this.dataInput = input)} />
         <br />
-        {this.state.error && <div>{this.state.error}<br /> </div>}
+
+        {/* {this.state.error && <div>{this.state.error}<br /> 
+    </div>} */}
+
+        {error && <div>{error}</div>}
+
 
         <button type="submit">submit</button>
         <br />
 
-        {!!report && <Report report={report} />}
-
-        {!!error && <div> error </div>}
+        {/* {!!report && <Report report={report} />} */}
 
       </form>
 
@@ -73,22 +79,26 @@ class AddHouses extends React.Component {
 }
 
 
-const Report = ({ report }) => (
+// let Report = ({ report }) => (
 
-  <div>
 
-    valid houses : {report.valid}
-    <br />
-    invalid houses ({report.invalid.length}):{''}
-    {report.invalid.map((data) => (
-      <div>
-        message : <pre> {JSON.stringify(data.errors, null, 2)}</pre>
-        raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>
+//   <div>
 
-      </div>
-    ))}
+//     valid houses : {report.valid}
 
-  </div>
-)
+//     invalid houses ({report.invalid.length}):
+
+//     {report.invalid.map((data) => (
+//       <div>
+//         message :{''}
+
+//         <pre> {JSON.stringify(data.errors, null, 2)}</pre>
+//         raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>
+
+//       </div>
+//     ))}
+
+//   </div>
+// );
 
 export default AddHouses;
