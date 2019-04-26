@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-//let report = null;
+
 class AddHouses extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -52,7 +52,7 @@ class AddHouses extends React.Component {
 
 
   render() {
-    // console.count(`render`);
+    console.count(`render`);
 
     const { error, report } = this.state;
 
@@ -85,13 +85,13 @@ let Report = ({ report }) => (
   <div>
 
     valid houses : {report.valid}
-
-    invalid houses ({report.invalid.length}):
+    <br />
+    invalid houses :  {report.invalid.length}
 
     {report.invalid.map((data) => (
       <div>
-        message :{''}
 
+        message :{''}
         <pre> {JSON.stringify(data.errors, null, 2)}</pre>
         raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>
 

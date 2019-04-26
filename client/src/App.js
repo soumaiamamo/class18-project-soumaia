@@ -23,7 +23,7 @@ class App extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/houses">houses</Link>
+              <Link to="/list/houses">houses</Link>
             </li>
             <li>
               <Link to="/contribute">contribute</Link>
@@ -32,6 +32,7 @@ class App extends Component {
               <Link to="/house/view"> House Vieuw</Link>
 
             </li>
+
           </ul>
 
           <Switch>

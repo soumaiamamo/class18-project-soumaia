@@ -31,37 +31,42 @@ const validHouse = (houseObject) => {
     errors.push('house should be an object')
 
   } else {
+
+
+
     requiredFields.forEach(field => {
       if (typeof houseObject[field] === "undefiend") {
         valid = false;
         errors.push(`${field}: is required`)
 
       }
-
     });
 
-    if (!validator.isURL(`${houseObject['link']}`)) {
-      valid = false;
-      errors.push(`link : must be valid URL`);
-    }
-
-
-    if (!validator.isNumeric(`${houseObject['price_value']}`)) {
-      valid = false;
-      errors.push(`price_value: wrongn numeric value `);
-    }
-
-    if (!validator.isAlpha(`${houseObject['location_country']}`)) {
-      valid = false;
-      errors.push(`location_country: wrongn `);
-    }
-
-    if (!validator.isAlpha(`${houseObject['location_city']}`)) {
-      valid = false;
-      errors.push(`price_value: wrongn numeric value `);
-    }
-
   }
+
+
+  if (!validator.isURL(`${houseObject['link']}`)) {
+    valid = false;
+    errors.push(`link : must be valid URL`);
+  }
+
+
+  if (!validator.isNumeric(`${houseObject['price_value']}`)) {
+    valid = false;
+    errors.push(`price_value: wrongn numeric value `);
+  }
+
+  if (!validator.isAlpha(`${houseObject['location_country']}`)) {
+    valid = false;
+    errors.push(`location_country: wrongn `);
+  }
+
+  if (!validator.isAlpha(`${houseObject['location_city']}`)) {
+    valid = false;
+    errors.push(`price_value: wrongn numeric value `);
+  }
+
+
 
 
   return {

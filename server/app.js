@@ -70,11 +70,23 @@ const addHousesSql = `REPLACE INTO houses (
   ) values ?`;
 
 
-// app.get("/api", apiRouter);
 
-// app.get("/houses", function (req, res) {
-//   res.send(fakeDB);
-// });
+app.get("/api", apiRouter);
+
+// to get houses from database .. :
+app.get("/houses", async (req, res) => {
+  try {
+    const houses = await db.queryPromise('select * from houses')
+
+    res.json(houses)
+
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+});
+
+
+
 
 
 app.post('/houses', async (req, res) => {
@@ -88,10 +100,6 @@ app.post('/houses', async (req, res) => {
   const processedData = req.body.map(validHouse);
 
 
-
-  // console.log(processedData);
-
-  // res.json({ ok: 1 });
 
 
 
@@ -110,6 +118,8 @@ app.post('/houses', async (req, res) => {
 
   const report = {
     valid: validData.length,
+
+
     invalid: invalidData,
   };
 
