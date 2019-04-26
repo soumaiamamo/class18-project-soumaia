@@ -34,3 +34,6 @@ sold int
 "images" : "RR",
 "sold" : 1
 }]
+
+
+INSERT INTO houses (link, market_date, location_country, location_city, location_address, location_coordinates_lat, location_coordinates_lng, size_living_area, size_rooms, price_value, price_currency, description, title) VALUES ("www.twitter.com", "2017-11-11", "syria", "homs", "sdf", 1.233445, 2.676677, 2, 2, 3.700, "EUR", "WER", "RE");

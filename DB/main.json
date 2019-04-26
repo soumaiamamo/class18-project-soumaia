@@ -12,9 +12,7 @@
     "price_value": 1,
     "price_currency": "EUR",
     "description": "WER",
-    "title": "RE",
-    "images": "",
-    "sold": 1
+    "title": "RE"
   },
   {
     "link": "www.twitter.com",
@@ -29,8 +27,6 @@
     "price_value": 1.565,
     "price_currency": "EUR",
     "description": "WER",
-    "title": "RE",
-    "images": "",
-    "sold": 1
+    "title": "RE"
   }
 ]

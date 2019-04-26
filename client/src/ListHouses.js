@@ -19,21 +19,42 @@ class ListHouses extends React.Component {
         city: "",
         order: "location_country_asc",
         page: 1
-      }
-
+      },
     };
   }
   componentDidMount() {
+
+    const params = this.props.location.search
+      .replace(/^\?/, '')
+      .split('&')
+      .filter(el => el.length)
+      .map((pair) => pair
+        .split('='))
+      .reduce((params, [name, value]) => {
+        params[name] = value;
+        return params;
+      }, {});
+
+
+
+
+
+    // console.log(params)
+
     this.setState({
       error: null,
-      loading: true
-    });
-
-    this.fetchHouses();
+      loading: true,
+      searchCriteria: {
+        ...this.state.searchCriteria,
+        ...params,
+      },
+    },
+      this.fetchHouses
+    );
   };
 
 
-  fetchHouses = () => {
+  fetchHouses(updateUrl = false) {
 
 
     const { searchCriteria } = this.state;
@@ -52,28 +73,37 @@ class ListHouses extends React.Component {
       }, [])
       .join(`&`);
 
-
-
+    if (updateUrl) {
+      this.props.history.replace(this.props.location.pathname + '?' + queryString)
+    }
 
     return fetch(`/houses?${queryString}`)
       .then((res) => res.json())
-      .then((housesList) =>
-
-        this.setState({
-          houses: housesList,
-          error: null,
-          loading: false,
-        })
-      )
+      .then(({ houses, pageSize, total, error }) => {
+        if (error) {
+          this.setState({
+            loading: false,
+            error,
+            houses: []
+          })
+        } else {
+          this.setState({
+            houses,
+            total,
+            pageSize,
+            error: null,
+            loading: false,
+          })
+        }
+      })
       .catch(() =>
         this.setState({
           error: 'Something went wrong .. ',
           loading: false
         })
       )
-
-
   }
+
 
 
   handleInputChange = (e) => {
@@ -86,12 +116,16 @@ class ListHouses extends React.Component {
         ...this.state.searchCriteria,
         [name]: value
       }
-    }, this.fetchHouses);
+    },
+      () => {
+        this.fetchHouses(true)
+      }
 
-
+    )
     console.log(name, value)
 
-  }
+
+  };
 
   render() {
 
@@ -99,129 +133,169 @@ class ListHouses extends React.Component {
       houses,
       error,
       loading,
+      pageSize,
+      total,
       searchCriteria: { price_min, price_max, city, order, page }
     } = this.state;
 
 
-    console.log(houses, price_max, price_min, order);
 
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-    if (error) {
-      return <div>{error}</div>;
-    }
+    const pages = Math.ceil(total / pageSize)
+
+    return (
+      <form>
+
+        <div>
+          <label>
+            price min :  <br />
 
 
-    if (!houses.length) {
+            <select name="price_min" value={price_min} onChange={this.handleInputChange}>
 
-      return <h2>No houses yet </h2>;
-    } else {
+              <option value="0">0</option>
+              <option value="50000">50000</option>
+              <option value="100000">100000</option>
+              <option value="15000">150000</option>
+              <option value="20000">200000</option>
+              <option value="50000">500000</option>
 
-      return (
-        <form>
-          <div>
-            <label>
-              price min :  <br />
-
-
-              <select name="price_min" value={price_min} onChange={this.handleInputChange}>
-
-                <option value="0">0</option>
-                <option value="50000">50000</option>
-                <option value="100000">100000</option>
-                <option value="15000">150000</option>
-                <option value="20000">200000</option>
-                <option value="50000">500000</option>
-
-              </select>
-            </label>
-          </div>
+            </select>
+          </label>
+        </div>
 
 
 
 
-          <div>
-            <label>
-              price max :  <br />
+        <div>
+          <label>
+            price max :  <br />
 
 
-              <select name="price_max" value={price_max} onChange={this.handleInputChange}>
+            <select name="price_max" value={price_max} onChange={this.handleInputChange}>
 
 
-                <option value="500000">500000</option>
-                <option value="1000000">1000000</option>
-                <option value="1500000">1500000</option>
-                <option value="200000">200000</option>
-                <option value="5000000">5000000</option>
-                <option value="10000000">10000000</option>
+              <option value="500000">500000</option>
+              <option value="1000000">1000000</option>
+              <option value="1500000">1500000</option>
+              <option value="200000">200000</option>
+              <option value="5000000">5000000</option>
+              <option value="10000000">10000000</option>
 
-              </select>
-            </label>
-          </div>
-
-
+            </select>
+          </label>
+        </div>
 
 
-          <div>
-            <label>
-              City :  <br />
 
 
-              <select name="City" value={city} onChange={this.handleInputChange}>
+        <div>
+          <label>
+            City :  <br />
 
 
-                <option value="" >select city</option>
-                <option value="syria">syria</option>
-
-              </select>
-            </label>
-          </div>
+            <select name="City" value={city} onChange={this.handleInputChange}>
 
 
-          <div>
-            <label>
-              Order :  <br />
+              <option value="" >select city</option>
+              <option value="syria">syria</option>
+
+            </select>
+          </label>
+        </div>
 
 
-              <select name="Order" value={order} onChange={this.handleInputChange}>
+        <div>
+          <label>
+            Order :  <br />
 
 
-                <option value="location_country_asc" >City ASC</option>
-                <option value="location_country_desc" >City DESC</option>
-                <option value="price_value_asc" >Price ASC</option>
-                <option value="price_value_desc" >Price DESC</option>
-              </select>
-            </label>
-          </div>
+            <select name="Order" value={order} onChange={this.handleInputChange}>
+
+
+              <option value="location_country_asc" >City ASC</option>
+              <option value="location_country_desc" >City DESC</option>
+              <option value="price_value_asc" >Price ASC</option>
+              <option value="price_value_desc" >Price DESC</option>
+            </select>
+          </label>
+        </div>
 
 
 
 
 
 
-          <div>
+        <div>
 
-            {houses.map((houseObject) => (
+
+
+          {loading && <div> Loading...</div>};
+
+          {error && <div>{error}</div>};
+
+
+          {Array.from({ length: pages || 0 }, (value, index) => {
+
+            const _page = index + 1;
+            return (
+              <div className={`${page == _page ? 'active' : ''} `}
+
+                onClick={() => {
+                  this.setState({
+                    ...this.state,
+                    searchCriteria: {
+                      ...this.state.searchCriteria,
+                      page: _page,
+
+                    },
+
+                  },
+
+                    () => this.fetchHouses(true)
+
+                    // console.log('set page', _page)
+
+                  );
+                }}
+
+              >
+
+                {_page}
+
+              </div>
+            );
+
+
+          })}
+
+          {houses.length == 0 ? (<div>No houses yet </div>) : (
+
+
+            houses.map((houseObject) => (
               <div key={houseObject.id}>
                 <Link to={`/houses/${houseObject.id}`}>
-                  price :  {houseObject.price_value}
+                  price :  {houseObject.price_value}<br />
+                  country : {houseObject.location_country}<br />
+                  city : {houseObject.location_city}<br />
+
                 </Link>
               </div>
-            ))}
+            ))
+          )}
+
+        </div>
+
+      </form >
 
 
-          </div >
-        </form >
 
-
-
-      )
-    }
+    );
 
   }
+
 }
+
 
 
 export default ListHouses;

@@ -3,14 +3,13 @@ import React from 'react';
 
 
 class AddHouses extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this
-  state = {
-    error: null,
-    report: null,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      report: null,
+    };
+  }
 
   componentDidMount() {
 
@@ -27,7 +26,7 @@ class AddHouses extends React.Component {
 
     fetch('/houses', {
       method: 'POST',
-      // mode: 'no-cors',
+      //  mode: 'no-cors',
       headers: { 'content-type': 'application/json' },
       body: this.dataInput.value
     })
