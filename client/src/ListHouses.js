@@ -14,6 +14,7 @@ class ListHouses extends React.Component {
       error: null,
       loading: false,
       searchCriteria: {
+        size_rooms: '1',
         price_min: 0,
         price_max: 10000000,
         city: "",
@@ -66,7 +67,7 @@ class ListHouses extends React.Component {
 
         if (val !== null && val !== '') {
 
-          query.push(`${field} =${encodeURI(val)}`);
+          query.push(`${field}=${encodeURI(val)}`);
         }
         return query;
 
@@ -135,7 +136,7 @@ class ListHouses extends React.Component {
       loading,
       pageSize,
       total,
-      searchCriteria: { price_min, price_max, city, order, page }
+      searchCriteria: { price_min, price_max, city, order, page, size_rooms }
     } = this.state;
 
 
@@ -147,6 +148,7 @@ class ListHouses extends React.Component {
       <form>
 
         <div>
+
           <label>
             price min :  <br />
 
@@ -163,8 +165,27 @@ class ListHouses extends React.Component {
             </select>
           </label>
         </div>
+        <div>
+          <label>
+            size rooms : <br />
+
+            <select
+              name="size_rooms"
+              value={size_rooms}
+              onChange={this.handleInputChange}
+            >
+              <option value="allHouses">all houses</option>
+              <option value="1">1 room</option>
+              <option value="2">2 rooms</option>
+              <option value="3">3 rooms</option>
+              <option value="4_more">4 or more rooms</option>
+
+              <br />
 
 
+            </select>
+          </label>
+        </div>
 
 
         <div>
