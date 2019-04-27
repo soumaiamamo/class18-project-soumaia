@@ -78,7 +78,7 @@ class ListHouses extends React.Component {
       this.props.history.replace(this.props.location.pathname + '?' + queryString)
     }
 
-    return fetch(`/houses?${queryString}`)
+    return fetch(`/api/houses?${queryString}`)
       .then((res) => res.json())
       .then(({ houses, pageSize, total, error }) => {
         if (error) {
@@ -251,9 +251,9 @@ class ListHouses extends React.Component {
 
 
 
-          {loading && <div> Loading...</div>};
+          {loading && <div> Loading...</div>}
 
-          {error && <div>{error}</div>};
+          {error && <div>{error}</div>}
 
 
           {Array.from({ length: pages || 0 }, (value, index) => {

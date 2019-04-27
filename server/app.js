@@ -14,7 +14,12 @@ const HOUSES_PER_PAGE = 5;
 app.use(bodyParser.json());
 
 
-let houseId = 3;
+app.use('/api', apiRouter)
+
+
+
+
+// let houseId = 3;
 
 
 // let fakeDB = [
@@ -55,7 +60,7 @@ let houseId = 3;
 //   }
 
 // ]
-const addHousesSql = `INSERT INTO houses (
+const addHousesSql = `replace INTO houses (
   link, 
   market_date, 
   location_country, 
@@ -126,6 +131,8 @@ apiRouter  // to get houses from database .. :
     }
 
 
+    let order_field, order_direction;
+
 
     const offset = (page - 1) * HOUSES_PER_PAGE;
 
@@ -139,9 +146,9 @@ apiRouter  // to get houses from database .. :
       params.push(city);
     }
 
-    if (country.length) {
-      conditions.push(`country = 'country name'`)
-    }
+    // if (country.length) {
+    //   conditions.push(`country = 'country name'`)
+    // }
 
     const queryBody = `
     where ${conditions.join(' and ')}
@@ -149,19 +156,17 @@ apiRouter  // to get houses from database .. :
 
 
     const queryTotal = `
-    select count(id) as total
+    select count(id) from houses as total
     ${queryBody}
-      `;
+    `;
 
     const queryItems = `   
-      select *
-      ${query} 
-   
-      order by ${db.escapeId(order_field, true)}  ${order_direction} 
-      limit ${ HOUSES_PER_PAGE}
-      offset ${offset}
-  
-        `
+      select * from houses
+      ${queryBody} 
+      order by${db.escapeId(order_field, true)}${order_direction} 
+      limit${HOUSES_PER_PAGE}
+      offset${offset}
+      `
 
     try {
       const total = await db.queryPromise(queryTotal, params);
@@ -176,8 +181,6 @@ apiRouter  // to get houses from database .. :
 
     }
 
-
-    let order_field, order_direction;
 
     const index = order.lastIndexOf('-');
 
@@ -270,6 +273,9 @@ app.use('*', (req, res) => {
 });
 
 
+
+module.exports = app;
+
 // let { price } = req.body;
 
 // if (typeof price == "undefind" || price <= 0 || Number.isNaN(price)) {
@@ -325,4 +331,3 @@ app.use('*', (req, res) => {
 // })
 
 
-module.exports = app;

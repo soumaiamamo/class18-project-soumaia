@@ -5,7 +5,7 @@ const PORT = 8080;
 
 
 
-
+//to get houses from link : 
 
 // function pastebin() {
 
@@ -18,8 +18,6 @@ const PORT = 8080;
 //   });
 
 
-
-
 // }
 
 // setInterval(pastebin, 60 * 1000);
@@ -30,4 +28,5 @@ app.listen(PORT, () => {
 
   console.log(`app is running at http://localhost:${PORT}`);
 });
+
 
