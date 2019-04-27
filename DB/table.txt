@@ -18,7 +18,7 @@ sold int
 );
 
 [{
-"link" :"www.facebook.com",
+"link" :"www.faeee.com",
 "market_date" : "01-01-2019",
 "location_country" :"syria",
 "location_city" : "damascus",
@@ -27,7 +27,7 @@ sold int
 "location_coordinates_lng" :5,
 "size_living_area" : 5,
 "size_rooms" : 5,
-"price_value": 1000,
+"price_value": 10000000,
 "price_currency" : "EUR",
 "description" : "WER" ,
 "title" : "RE",

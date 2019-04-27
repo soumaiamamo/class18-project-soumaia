@@ -4,6 +4,7 @@ import Home from "./Home";
 import ListHouses from "./ListHouses";
 import HouseView from "./HouseView";
 import AddHouses from './AddHouses';
+import "./App.css"
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class App extends Component {
     return (
 
       <Router>
-        <div>
+        <div className="mainPage">
 
           <ul>
             <li>

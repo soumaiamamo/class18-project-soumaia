@@ -24,7 +24,7 @@ class AddHouses extends React.Component {
     console.log(this.dataInput.value);
 
 
-    fetch('/houses', {
+    fetch('/api/houses', {
       method: 'POST',
       //  mode: 'no-cors',
       headers: { 'content-type': 'application/json' },

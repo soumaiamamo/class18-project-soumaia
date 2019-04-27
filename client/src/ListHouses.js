@@ -78,7 +78,7 @@ class ListHouses extends React.Component {
       this.props.history.replace(this.props.location.pathname + '?' + queryString)
     }
 
-    return fetch(`/api/houses?${queryString}`)
+    return fetch(`/api/houses/`)
       .then((res) => res.json())
       .then(({ houses, pageSize, total, error }) => {
         if (error) {
@@ -111,11 +111,12 @@ class ListHouses extends React.Component {
 
     const { name, value } = e.target;
 
-    this.state({
+    this.setState({
       ...this.state,
       searchCriteria: {
         ...this.state.searchCriteria,
-        [name]: value
+        [name]: value,
+        page: 1,
       }
     },
       () => {
@@ -127,6 +128,7 @@ class ListHouses extends React.Component {
 
 
   };
+
 
   render() {
 

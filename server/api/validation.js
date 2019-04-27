@@ -1,4 +1,3 @@
-
 const validator = require('validator');
 
 
@@ -85,4 +84,3 @@ module.exports = {
   validHouse,
   houseForSqlQuery,
 };
-
