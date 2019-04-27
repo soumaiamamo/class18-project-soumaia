@@ -66,7 +66,7 @@ class AddHouses extends React.Component {
         {error && <div>{error}</div>}
 
 
-        <button className="submit" type="submit">submit</button>
+        <button className="submit" type="submit">Submit</button>
         <br />
 
         {!!report && <Report report={report} />}

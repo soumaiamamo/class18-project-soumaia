@@ -9,16 +9,15 @@ class ListHouses extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       houses: [],
       error: null,
       loading: false,
       searchCriteria: {
-        size_rooms: '1',
+        size_rooms: '',
         price_min: 0,
         price_max: 10000000,
-        city: "",
+        location_city: "",
         order: "location_country_asc",
         page: 1
       },
@@ -73,7 +72,7 @@ class ListHouses extends React.Component {
       .join('&');
 
     if (updateUrl) {
-      this.props.history.push(this.props.location.pathname + '?' + queryString)
+      this.props.history.replace(this.props.location.pathname + '?' + queryString)
     }
 
     fetch(`/api/houses?/${queryString}`)
@@ -139,9 +138,9 @@ class ListHouses extends React.Component {
         price_min,
         price_max,
         city,
+        size_rooms,
         order,
         page,
-        size_rooms,
       }
     } = this.state;
 
@@ -149,7 +148,7 @@ class ListHouses extends React.Component {
 
 
     const pages = Math.ceil(total / pageSize)
-    // page = parseInt(page, 10);
+    page = parseInt(page, 10);
 
     return (
       <form  >
@@ -169,28 +168,6 @@ class ListHouses extends React.Component {
               </select>
             </label>
           </div>
-          <div>
-            <label>
-              size rooms  <br />
-
-              <select className="room"
-                name="size_rooms"
-                value={size_rooms}
-                onChange={this.handleInputChange}
-              >
-                <option value="allHouses">All houses</option>
-                <option value="1">1 room</option>
-                <option value="2">2 rooms</option>
-                <option value="3">3 rooms</option>
-                <option value="+4">4 or more rooms</option>
-
-                <br />
-
-
-              </select>
-            </label>
-          </div>
-
 
           <div>
             <label>
@@ -217,15 +194,14 @@ class ListHouses extends React.Component {
           <div>
             <label>
               City   <br />
-              <select className="city" name="City" value={city} onChange={this.handleInputChange}>
-
+              <select className="city" name="location_city" value={city} onChange={this.handleInputChange}>
 
                 <option value="" >select city</option>
-                <option value="syria">damascus</option>
-                <option value="syria">homs</option>
-                <option value="syria">aleppo</option>
-                <option value="syria">qamshli</option>
-                <option value="syria">hasaka</option>
+                <option value="damascus">damascus</option>
+                <option value="homs">homs</option>
+                <option value="aleppo">aleppo</option>
+                <option value="qamshli">qamshli</option>
+                <option value="hasaka">hasaka</option>
 
               </select>
             </label>
@@ -237,8 +213,7 @@ class ListHouses extends React.Component {
               Order   <br />
 
 
-              <select className="order" name="Order" value={order} onChange={this.handleInputChange}>
-
+              <select className="order" name="order" value={order} onChange={this.handleInputChange}>
 
                 <option value="location_country_asc" >City ASC</option>
                 <option value="location_country_desc" >City DESC</option>
@@ -248,8 +223,23 @@ class ListHouses extends React.Component {
             </label>
           </div>
 
+          <div>
+            <label>
+              size rooms  <br />
 
 
+              <select className="room" name="size_rooms" value={size_rooms} onChange={this.handleInputChange}>
+                <option value="">All houses</option>
+                <option value="1">1 room</option>
+                <option value="2">2 rooms</option>
+                <option value="3">3 rooms</option>
+                <option value="+4">4 or more rooms</option>
+
+                <br />
+
+              </select>
+            </label>
+          </div>
 
 
 

@@ -60,68 +60,67 @@ apiRouter.post('/houses', async (req, res) => {
 
 apiRouter.get('/houses', async (req, res) => {
   let {
-    size_rooms = 'all',
+    size_rooms = '',
     price_min = 0,
     price_max = 1000000,
     location_city = '',
-
     order = 'location_country_asc',
     page = 1,
   } = req.query;
 
   price_min = parseInt(price_min, 10);
+
   if (Number.isNaN(price_min) || price_min < 0) {
-    return res
-      .status(400)
-      .json({ error: `'price_min' should be a positive number` });
+    return res.status(400).json(
+      { error: `'price_min' should be a positive number` });
+
   }
   price_max = parseInt(price_max, 10);
   if (Number.isNaN(price_max) || price_max < 0) {
-    return res
-      .status(400)
-      .json({ error: `'price_max' should be a positive number` });
+    return res.status(400).json(
+      { error: `'price_max' should be a positive number` });
   }
-  if (price_max < price_min) {
-    return res
-      .status(400)
+  if (price_max <= price_min) {
+    return res.status(400)
       .json({ error: `'price_max' should be bigger than 'price_min'` });
   }
   page = parseInt(page, 10);
   if (Number.isNaN(page) || page <= 0) {
-    return res
-      .status(400)
-      .json({ error: `'page' should be a positive number` });
+    return res.status(400).json(
+      { error: `'page' should be a positive number` });
   }
 
-  if (['all', '1', '2', '3', '+4'].indexOf(size_rooms) === -1) {
+  if (['', '1', '2', '3', '+4'].indexOf(size_rooms) === -1) {
     return res.status(400).json({ error: `'size_rooms' param is wrong` });
   }
+
   let order_field;
   let order_direction;
 
-  const index = order.lastIndexOf('_');
+  let index = order.lastIndexOf('_');
   if (index > 0) {
     order_field = order.slice(0, index);
     order_direction = order.slice(index + 1);
+
     if (['asc', 'desc'].indexOf(order_direction) === -1) {
-      return res.status(400).json({ error: `'order' param is wrong` });
+      return res.status(400).json({ error: `'order' params is wrong` });
     }
   } else {
-    return res.status(400).json({ error: `'order' param is wrong` });
+    return res.status(400).json({ error: `'order' params is wrong` });
   }
 
   const offset = (page - 1) * HOUSES_PER_PAGE;
-
   const conditions = [`(price_value between ? and ?)`];
   const params = [price_min, price_max];
 
+
   if (location_city.length) {
-    conditions.push(`location_city = ?`);
+    conditions.push(`location_city=?`);
     params.push(location_city);
   }
   if (size_rooms === '+4') {
     conditions.push('size_rooms >= ?');
-    params.push(+4);
+    params.push(4);
   } else if (size_rooms !== 'all') {
     conditions.push('size_rooms = ?');
     params.push(size_rooms);
@@ -132,6 +131,7 @@ apiRouter.get('/houses', async (req, res) => {
 
   const queryTotal = `
   select count(id) as total ${queryBody}`;
+
 
   const queryItems = `
   select * ${queryBody}
@@ -152,8 +152,8 @@ apiRouter.get('/houses', async (req, res) => {
   }
 });
 
-apiRouter.use('*', (req, res) => {
-  res.status(404).end();
-});
+// apiRouter.use('*', (req, res) => {
+//   res.status(404).end();
+// });
 
 module.exports = apiRouter;
