@@ -89,7 +89,7 @@ let Report = ({ report }) => (
 
     {report.invalid.map((data) => (
       <div>
-
+        <br />
         message :{''}
         <pre> {JSON.stringify(data.errors, null, 2)}</pre>
         raw : <pre>{JSON.stringify(data.raw, null, 2)} </pre>

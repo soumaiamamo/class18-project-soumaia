@@ -1,0 +1,40 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  font-size: 24px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  padding-right: 60px;
+  text-decoration: none;
+  font-style: italic;
+}
+
+
+li a:hover {
+  background-color: #111;
+}
+
+.homePage{
+  text-align: center;
+ font-size : 60px;
+ font-style: italic;
+ color:plum;
+ margin-top: 5px;
+}
+
+.homeImg{
+  margin-top: -30px;
+}

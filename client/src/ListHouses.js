@@ -37,9 +37,6 @@ class ListHouses extends React.Component {
       }, {});
 
 
-
-
-
     // console.log(params)
 
     this.setState({
@@ -72,20 +69,22 @@ class ListHouses extends React.Component {
         return query;
 
       }, [])
-      .join(`&`);
+      .join('&');
 
     if (updateUrl) {
-      this.props.history.replace(this.props.location.pathname + '?' + queryString)
+      this.props.history.push(this.props.location.pathname + '?' + queryString)
     }
 
-    return fetch(`/api/houses/`)
+    fetch(`/api/houses?/${queryString}`)
+
       .then((res) => res.json())
       .then(({ houses, pageSize, total, error }) => {
         if (error) {
           this.setState({
             loading: false,
-            error,
-            houses: []
+            error: error,
+            houses: [],
+            total: 0,
           })
         } else {
           this.setState({
@@ -116,7 +115,7 @@ class ListHouses extends React.Component {
       searchCriteria: {
         ...this.state.searchCriteria,
         [name]: value,
-        page: 1,
+        page: 1
       }
     },
       () => {
@@ -124,27 +123,32 @@ class ListHouses extends React.Component {
       }
 
     )
-    console.log(name, value)
-
-
+    // console.log(name, value)
   };
-
 
   render() {
 
-    const {
+    let {
       houses,
       error,
       loading,
       pageSize,
       total,
-      searchCriteria: { price_min, price_max, city, order, page, size_rooms }
+      searchCriteria: {
+        price_min,
+        price_max,
+        city,
+        order,
+        page,
+        size_rooms,
+      }
     } = this.state;
 
 
 
 
     const pages = Math.ceil(total / pageSize)
+    // page = parseInt(page, 10);
 
     return (
       <form>
@@ -152,7 +156,7 @@ class ListHouses extends React.Component {
         <div>
 
           <label>
-            price min :  <br />
+            Price min :  <br />
 
 
             <select name="price_min" value={price_min} onChange={this.handleInputChange}>
@@ -176,11 +180,11 @@ class ListHouses extends React.Component {
               value={size_rooms}
               onChange={this.handleInputChange}
             >
-              <option value="allHouses">all houses</option>
+              <option value="allHouses">All houses</option>
               <option value="1">1 room</option>
               <option value="2">2 rooms</option>
               <option value="3">3 rooms</option>
-              <option value="4_more">4 or more rooms</option>
+              <option value="+4">4 or more rooms</option>
 
               <br />
 
@@ -261,8 +265,9 @@ class ListHouses extends React.Component {
           {Array.from({ length: pages || 0 }, (value, index) => {
 
             const _page = index + 1;
+
             return (
-              <div className={`${page == _page ? 'active' : ''} `}
+              <div className={page === _page ? 'active' : ''}
 
                 onClick={() => {
                   this.setState({
@@ -292,19 +297,18 @@ class ListHouses extends React.Component {
 
           })}
 
-          {houses.length == 0 ? (<div>No houses yet </div>) : (
+          {houses.length === 0 ? (<div>No houses yet </div>) : (
 
 
             houses.map((houseObject) => (
-              <div className="top" key={houseObject.id}>
-
+              <div key={houseObject.id}>
                 <Link to={`/houses/${houseObject.id}`}>
-                  <ul>
-                    <li>link : {houseObject.link}</li>
-                    <li>price :  {houseObject.price_value}<br /></li>
-                    <li> country : {houseObject.location_country}<br /></li>
-                    <li>city : {houseObject.location_city}<br /></li>
-                  </ul>
+                  price :  {houseObject.price_value}<br />
+                  country : {houseObject.location_country}<br />
+                  city : {houseObject.location_city}<br />
+                  size rooms: {houseObject.size_rooms}
+
+
                 </Link>
               </div>
             ))
