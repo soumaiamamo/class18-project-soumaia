@@ -296,12 +296,15 @@ class ListHouses extends React.Component {
 
 
             houses.map((houseObject) => (
-              <div key={houseObject.id}>
-                <Link to={`/houses/${houseObject.id}`}>
-                  price :  {houseObject.price_value}<br />
-                  country : {houseObject.location_country}<br />
-                  city : {houseObject.location_city}<br />
+              <div className="top" key={houseObject.id}>
 
+                <Link to={`/houses/${houseObject.id}`}>
+                  <ul>
+                    <li>link : {houseObject.link}</li>
+                    <li>price :  {houseObject.price_value}<br /></li>
+                    <li> country : {houseObject.location_country}<br /></li>
+                    <li>city : {houseObject.location_city}<br /></li>
+                  </ul>
                 </Link>
               </div>
             ))
