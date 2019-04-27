@@ -19,19 +19,18 @@ class App extends Component {
       <Router>
         <div className="mainPage">
 
-          <ul>
-            <li>
+          <ul className="mainUl">
+            <li className="mainli">
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="mainli">
               <Link to="/list/houses">houses</Link>
             </li>
-            <li>
+            <li className="mainli">
               <Link to="/contribute">contribute</Link>
             </li>
-            <li>
+            <li className="mainli">
               <Link to="/house/view"> House Vieuw</Link>
-
             </li>
 
           </ul>

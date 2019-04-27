@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./App.css"
 
 
 class AddHouses extends React.Component {
@@ -57,7 +57,7 @@ class AddHouses extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <textarea ref={input => (this.dataInput = input)} />
+        <textarea className="contribute" ref={input => (this.dataInput = input)} />
         <br />
 
         {/* {this.state.error && <div>{this.state.error}<br /> 
@@ -66,7 +66,7 @@ class AddHouses extends React.Component {
         {error && <div>{error}</div>}
 
 
-        <button type="submit">submit</button>
+        <button className="submit" type="submit">submit</button>
         <br />
 
         {!!report && <Report report={report} />}

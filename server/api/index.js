@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const db = require('./db');
 const { validHouse, houseForSqlQuery } = require('./validation');
 
-const HOUSES_PER_PAGE = 5;
+const HOUSES_PER_PAGE = 4;
 
 apiRouter.use(bodyParser.json());
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import "./App.css"
 
 import { Link } from 'react-router-dom';
 
@@ -151,163 +152,169 @@ class ListHouses extends React.Component {
     // page = parseInt(page, 10);
 
     return (
-      <form>
+      <form  >
+        <div className="mainList">
+          <div className="listPage">
+            <label >
+              Price min   <br />
+              <select className="price" name="price_min" value={price_min} onChange={this.handleInputChange}>
 
-        <div>
+                <option value="0">0</option>
+                <option value="50000">50000</option>
+                <option value="100000">100000</option>
+                <option value="15000">150000</option>
+                <option value="20000">200000</option>
+                <option value="50000">500000</option>
 
-          <label>
-            Price min :  <br />
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              size rooms  <br />
 
+              <select className="room"
+                name="size_rooms"
+                value={size_rooms}
+                onChange={this.handleInputChange}
+              >
+                <option value="allHouses">All houses</option>
+                <option value="1">1 room</option>
+                <option value="2">2 rooms</option>
+                <option value="3">3 rooms</option>
+                <option value="+4">4 or more rooms</option>
 
-            <select name="price_min" value={price_min} onChange={this.handleInputChange}>
-
-              <option value="0">0</option>
-              <option value="50000">50000</option>
-              <option value="100000">100000</option>
-              <option value="15000">150000</option>
-              <option value="20000">200000</option>
-              <option value="50000">500000</option>
-
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            size rooms : <br />
-
-            <select
-              name="size_rooms"
-              value={size_rooms}
-              onChange={this.handleInputChange}
-            >
-              <option value="allHouses">All houses</option>
-              <option value="1">1 room</option>
-              <option value="2">2 rooms</option>
-              <option value="3">3 rooms</option>
-              <option value="+4">4 or more rooms</option>
-
-              <br />
+                <br />
 
 
-            </select>
-          </label>
-        </div>
+              </select>
+            </label>
+          </div>
 
 
-        <div>
-          <label>
-            price max :  <br />
+          <div>
+            <label>
+              price max   <br />
 
 
-            <select name="price_max" value={price_max} onChange={this.handleInputChange}>
+              <select className="priceMax" name="price_max" value={price_max} onChange={this.handleInputChange}>
 
 
-              <option value="500000">500000</option>
-              <option value="1000000">1000000</option>
-              <option value="1500000">1500000</option>
-              <option value="200000">200000</option>
-              <option value="5000000">5000000</option>
-              <option value="10000000">10000000</option>
+                <option value="500000">500000</option>
+                <option value="1000000">1000000</option>
+                <option value="1500000">1500000</option>
+                <option value="200000">200000</option>
+                <option value="5000000">5000000</option>
+                <option value="10000000">10000000</option>
 
-            </select>
-          </label>
-        </div>
+              </select>
+            </label>
+          </div>
 
 
 
 
-        <div>
-          <label>
-            City :  <br />
+          <div>
+            <label>
+              City   <br />
+              <select className="city" name="City" value={city} onChange={this.handleInputChange}>
 
 
-            <select name="City" value={city} onChange={this.handleInputChange}>
+                <option value="" >select city</option>
+                <option value="syria">damascus</option>
+                <option value="syria">homs</option>
+                <option value="syria">aleppo</option>
+                <option value="syria">qamshli</option>
+                <option value="syria">hasaka</option>
+
+              </select>
+            </label>
+          </div>
 
 
-              <option value="" >select city</option>
-              <option value="syria">syria</option>
-
-            </select>
-          </label>
-        </div>
+          <div>
+            <label>
+              Order   <br />
 
 
-        <div>
-          <label>
-            Order :  <br />
+              <select className="order" name="Order" value={order} onChange={this.handleInputChange}>
 
 
-            <select name="Order" value={order} onChange={this.handleInputChange}>
-
-
-              <option value="location_country_asc" >City ASC</option>
-              <option value="location_country_desc" >City DESC</option>
-              <option value="price_value_asc" >Price ASC</option>
-              <option value="price_value_desc" >Price DESC</option>
-            </select>
-          </label>
-        </div>
-
+                <option value="location_country_asc" >City ASC</option>
+                <option value="location_country_desc" >City DESC</option>
+                <option value="price_value_asc" >Price ASC</option>
+                <option value="price_value_desc" >Price DESC</option>
+              </select>
+            </label>
+          </div>
 
 
 
 
 
-        <div>
+
+          <div className="page">
 
 
 
-          {loading && <div> Loading...</div>}
+            {loading && <div> Loading...</div>}
 
-          {error && <div>{error}</div>}
+            {error && <div>{error}</div>}
 
 
-          {Array.from({ length: pages || 0 }, (value, index) => {
+            {Array.from({ length: pages || 0 }, (value, index) => {
 
-            const _page = index + 1;
+              const _page = index + 1;
 
-            return (
-              <div className={page === _page ? 'active' : ''}
+              return (
+                <div id="page" className={page === _page ? 'active' : ''}
 
-                onClick={() => {
-                  this.setState({
-                    ...this.state,
-                    searchCriteria: {
-                      ...this.state.searchCriteria,
-                      page: _page,
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      searchCriteria: {
+                        ...this.state.searchCriteria,
+                        page: _page,
+
+                      },
 
                     },
 
-                  },
+                      () => this.fetchHouses(true)
 
-                    () => this.fetchHouses(true)
+                      // console.log('set page', _page)
 
-                    // console.log('set page', _page)
+                    );
+                  }}
 
-                  );
-                }}
+                >
 
-              >
-
-                {_page}
-
-              </div>
-            );
+                  {_page}
 
 
-          })}
+                </div>
+              );
+
+
+            })}
+            <br />
+            <br />
+          </div>
 
           {houses.length === 0 ? (<div>No houses yet </div>) : (
 
 
             houses.map((houseObject) => (
-              <div key={houseObject.id}>
+              <div className="houses" key={houseObject.id}>
                 <Link to={`/houses/${houseObject.id}`}>
-                  price :  {houseObject.price_value}<br />
-                  country : {houseObject.location_country}<br />
-                  city : {houseObject.location_city}<br />
-                  size rooms: {houseObject.size_rooms}
 
+                  <ul className="houseUl">
+                    <li className="houseli"> price :  {houseObject.price_value}</li>
+                    <li className="houseli">country : {houseObject.location_country}</li>
+                    <li className="houseli">city : {houseObject.location_city}</li>
+                    <li className="houseli">size rooms: {houseObject.size_rooms}</li>
+
+                  </ul>
 
                 </Link>
               </div>
