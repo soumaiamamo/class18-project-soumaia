@@ -29,15 +29,12 @@ const validHouse = (houseObject) => {
 
     errors.push('house should be an object')
 
-  } else {
-
-
-
+  }
+  else {
     requiredFields.forEach(field => {
-      if (typeof houseObject[field] === "undefiend") {
+      if (typeof houseObject[field] === 'undefined') {
         valid = false;
-        errors.push(`${field}: is required`)
-
+        errors.push(`${field}:is require`);
       }
     });
 
@@ -62,7 +59,7 @@ const validHouse = (houseObject) => {
 
   if (!validator.isAlpha(`${houseObject['location_city']}`)) {
     valid = false;
-    errors.push(`price_value: wrongn numeric value `);
+    errors.push(`location_city: wrongn`);
   }
 
 

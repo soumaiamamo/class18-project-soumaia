@@ -1,5 +1,5 @@
 import React from 'react';
-import "./App.css"
+import "./App.scss"
 
 import { Link } from 'react-router-dom';
 
@@ -36,8 +36,6 @@ class ListHouses extends React.Component {
         return params;
       }, {});
 
-
-    // console.log(params)
 
     this.setState({
       error: null,
@@ -171,7 +169,7 @@ class ListHouses extends React.Component {
 
           <div>
             <label>
-              price max   <br />
+              Price max   <br />
 
 
               <select className="priceMax" name="price_max" value={price_max} onChange={this.handleInputChange}>
@@ -215,8 +213,8 @@ class ListHouses extends React.Component {
 
               <select className="order" name="order" value={order} onChange={this.handleInputChange}>
 
-                <option value="location_country_asc" >City ASC</option>
-                <option value="location_country_desc" >City DESC</option>
+                <option value="location_city_asc" >City ASC</option>
+                <option value="location_city_desc" >City DESC</option>
                 <option value="price_value_asc" >Price ASC</option>
                 <option value="price_value_desc" >Price DESC</option>
               </select>
@@ -225,17 +223,17 @@ class ListHouses extends React.Component {
 
           <div>
             <label>
-              size rooms  <br />
+              Size rooms  <br />
 
 
               <select className="room" name="size_rooms" value={size_rooms} onChange={this.handleInputChange}>
-                <option value="">All houses</option>
-                <option value="1">1 room</option>
-                <option value="2">2 rooms</option>
-                <option value="3">3 rooms</option>
-                <option value="+4">4 or more rooms</option>
 
-                <br />
+                <option value="">All houses</option>
+                <option value="1">one room</option>
+                <option value="2">two rooms</option>
+                <option value="3">three rooms</option>
+                <option value="+4">four or more rooms</option>
+
 
               </select>
             </label>
@@ -244,7 +242,6 @@ class ListHouses extends React.Component {
 
 
           <div className="page">
-
 
 
             {loading && <div> Loading...</div>}
@@ -299,10 +296,10 @@ class ListHouses extends React.Component {
                 <Link to={`/houses/${houseObject.id}`}>
 
                   <ul className="houseUl">
-                    <li className="houseli"> price :  {houseObject.price_value}</li>
-                    <li className="houseli">country : {houseObject.location_country}</li>
-                    <li className="houseli">city : {houseObject.location_city}</li>
-                    <li className="houseli">size rooms: {houseObject.size_rooms}</li>
+                    <li className="houseli"> Price :  {houseObject.price_value}</li>
+                    <li className="houseli">Country : {houseObject.location_country}</li>
+                    <li className="houseli">City : {houseObject.location_city}</li>
+                    <li className="houseli">Size rooms: {houseObject.size_rooms}</li>
 
                   </ul>
 

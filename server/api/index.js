@@ -91,7 +91,7 @@ apiRouter.get('/houses', async (req, res) => {
   }
 
   if (['', '1', '2', '3', '+4'].indexOf(size_rooms) === -1) {
-    return res.status(400).json({ error: `'size_rooms' param is wrong` });
+    return res.status(400).json({ error: `'size_rooms' params is wrong` });
   }
 
   let order_field;
@@ -121,7 +121,7 @@ apiRouter.get('/houses', async (req, res) => {
   if (size_rooms === '+4') {
     conditions.push('size_rooms >= ?');
     params.push(4);
-  } else if (size_rooms !== 'all') {
+  } else if (size_rooms !== '') {
     conditions.push('size_rooms = ?');
     params.push(size_rooms);
   }

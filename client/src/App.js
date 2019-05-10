@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./Home";
 import ListHouses from "./ListHouses";
-import HouseView from "./HouseView";
+import Documentation from "./Documentation";
 import AddHouses from './AddHouses';
-import "./App.css"
+import "./App.scss"
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class App extends Component {
 
           <ul className="mainUl">
             <li className="mainli">
-              <Link to="/">Home</Link>
+              <Link to="/">home</Link>
             </li>
             <li className="mainli">
               <Link to="/list/houses">houses</Link>
@@ -30,7 +30,7 @@ class App extends Component {
               <Link to="/contribute">contribute</Link>
             </li>
             <li className="mainli">
-              <Link to="/house/view"> House Vieuw</Link>
+              <Link to="/documentation"> documentation </Link>
             </li>
 
           </ul>
@@ -40,7 +40,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/list/houses" component={ListHouses} />
             <Route path="/contribute" component={AddHouses} />
-            <Route path="/house/view" component={HouseView} />
+            <Route path="/documentation" component={Documentation} />
 
           </Switch>
 

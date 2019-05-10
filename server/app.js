@@ -1,3 +1,6 @@
+//express my data from database and create basic endpoints to send to react . 
+
+
 const express = require('express');
 
 const cors = require('cors');
@@ -26,3 +29,5 @@ app.use('*', (req, res) => {
 });
 
 module.exports = app;
+
+
