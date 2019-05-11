@@ -138,7 +138,9 @@ li a:hover {
   font-size:30px;
 }
 
-
+.threelines {
+display: none ; 
+}
 
 .homePage{
   text-align: center;
@@ -309,12 +311,27 @@ font-weight: bold;
                      @media screen and (max-width: 600px) {
                       
  .mainUl {
-
-// width : 0%; 
-// padding : 0 px ;
-// margin : 0px ;
 display: none ;
+position: absolute;
+top: 18%;
+left: 20%;
+transform: translate(-50%, -50%);
+
+
  }
+
+
+ 
+.threelines {
+  width : 25% ;
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+
  body{
    width : 100% ; 
    margin: 0;
@@ -335,7 +352,7 @@ display: none ;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.homePage{font-size:25px; }
+.homePage{font-size:35px; }
 .top_paragraph{font-size:20px;}
 
 }
@@ -349,14 +366,6 @@ display: none ;
   display: flex ;
   flex-direction: column ;
   float : center ; 
-
-  // .features_part{
-    
-  // width : 20%;
-  // display: flex ;
-  // flex-direction: column ;
-  // float : center ; 
-  // }
 
 }
 

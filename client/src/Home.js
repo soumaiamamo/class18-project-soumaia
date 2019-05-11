@@ -1,8 +1,59 @@
+
+import "./App.scss";
+
+
 import React from 'react';
-
+import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ListHouses from "./ListHouses";
+import Documentation from "./Documentation";
+import AddHouses from './AddHouses';
 import "./App.scss"
-
 class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick = () => {
+
+    return (
+      <Router>
+        <div classNa me="mainPage">
+
+          <ul className="mainUl">
+            <li className="mainli">
+              <Link to="/">home</Link>
+            </li>
+            <li className="mainli">
+              <Link to="/list/houses">houses</Link>
+            </li>
+            <li className="mainli">
+              <Link to="/contribute">contribute</Link>
+            </li>
+            <li className="mainli">
+              <Link to="/documentation"> documentation </Link>
+            </li>
+
+          </ul>
+
+          <Switch>
+
+            <Route exact path="/" component={Home} />
+            <Route path="/list/houses" component={ListHouses} />
+            <Route path="/contribute" component={AddHouses} />
+            <Route path="/documentation" component={Documentation} />
+
+          </Switch>
+
+
+        </div>
+
+
+      </Router>
+    )
+
+  }
 
   render() {
 
@@ -11,7 +62,7 @@ class Home extends React.Component {
 
         <div className="header">
 
-          <img className="background_img" src={require("./assets/multiple-houses.jpeg")} />
+          <img className="background_img" src={require("./assets/multiple-houses.jpeg")} alt="multiple-houses" />
 
           <div className="top_paragraph_div">
             <h1 className="homePage">HackYourEstate</h1>
@@ -20,20 +71,24 @@ class Home extends React.Component {
             </h2>
           </div>
 
+
+
+          <img className="threelines" src={require("./assets/threelines.png")} alt="threelines" onClick={this.handleClick} />
+
         </div>
         <div className="blue_div">
           <h1 className="title">Features</h1>
           <div className="features">
             <div className="features_part" >
-              <img className="features_img" src={require('./assets/seach-house-icon.png')} />
+              <img className="features_img" src={require('./assets/seach-house-icon.png')} alt="seach-house-icon" />
               <h2 className="paragraph">Search for houses</h2>
             </div>
             <div className="features_part">
-              <img className="features_img" src={require('./assets/upload-data-icon.svg')} />
+              <img className="features_img" src={require('./assets/upload-data-icon.svg')} alt="upload-data-icon" />
               <h2 className="paragraph">Upload house data</h2>
             </div >
             <div className="features_part">
-              <img className="features_img" src={require('./assets/contribute.png')} />
+              <img className="features_img" src={require('./assets/contribute.png')} alt="contribute" />
               <h2 className="paragraph">Contribute to API</h2>
             </div>
           </div>
@@ -42,9 +97,9 @@ class Home extends React.Component {
 
         <div className="benefits_div">
           <div className="benefits_img_div">
-            <img className="benefits_img" src={require('./assets/easy-to-use.png')} />
-            <img className="benefits_img" src={require('./assets/open-source.png')} />
-            <img className="benefits_img" src={require('./assets/catalog.png')} />
+            <img className="benefits_img" src={require('./assets/easy-to-use.png')} alt="easy-to-use" />
+            <img className="benefits_img" src={require('./assets/open-source.png')} alt="open-source" />
+            <img className="benefits_img" src={require('./assets/catalog.png')} alt="catalog" />
           </div>
           <div className="benefits_p">
             <h2 className="benefits">Easy to use </h2>
@@ -66,13 +121,13 @@ class Home extends React.Component {
           <h1 className="title">Written in…</h1>
 
 
-          <img className="written_img" src={require('./assets/mysql-icon.svg')} />
-          <img className="written_img" src={require('./assets/nodejs-icon.png')} />
-          <img className="written_img" src={require('./assets/reactjs-icon.png')} />
+          <img className="written_img" src={require('./assets/mysql-icon.svg')} alt="mysql-icon" />
+          <img className="written_img" src={require('./assets/nodejs-icon.png')} alt="nodejs-icon" />
+          <img className="written_img" src={require('./assets/reactjs-icon.png')} alt="reactjs-icon" />
         </div>
         <div className="bottom">
           <h1 className="bottom_title">What are you waiting for?</h1>
-          <h2 className="bottom_paragraph">Find your next house, or go contribute!</h2>
+          <h2 className="bottom_paragraph">Find your nexthouse, or go contribute!</h2>
           <br />
         </div>
         <h1 className="copyright">© Copyright by HackYourFuture 2019</h1>
