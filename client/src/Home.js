@@ -24,19 +24,18 @@ class Home extends React.Component {
         <div className="blue_div">
           <h1 className="title">Features</h1>
           <div className="features">
-
-            <img className="blue_div_img" src={require('./assets/seach-house-icon.png')} />
-
-
-            <img className="blue_div_img" src={require('./assets/upload-data-icon.svg')} />
-
-
-            <img className="blue_div_img" src={require('./assets/contribute.png')} />
-          </div>
-          <div className="features2">
-            <h2 className="paragraph">Search for houses</h2>
-            <h2 className="paragraph">Upload house data</h2>
-            <h2 className="paragraph">Contribute to API</h2>
+            <div className="features_part" >
+              <img className="features_img" src={require('./assets/seach-house-icon.png')} />
+              <h2 className="paragraph">Search for houses</h2>
+            </div>
+            <div className="features_part">
+              <img className="features_img" src={require('./assets/upload-data-icon.svg')} />
+              <h2 className="paragraph">Upload house data</h2>
+            </div >
+            <div className="features_part">
+              <img className="features_img" src={require('./assets/contribute.png')} />
+              <h2 className="paragraph">Contribute to API</h2>
+            </div>
           </div>
         </div>
         <h1 className="title">Benefits</h1>
@@ -49,14 +48,14 @@ class Home extends React.Component {
           </div>
           <div className="benefits_p">
             <h2 className="benefits">Easy to use </h2>
-            <h3 className="paragraph">Find or upload in a matter of clicks</h3>
+            <h3 className="benefits_paragraph">Find or upload in a matter of clicks</h3>
 
             <br />
             <h2 className="benefits">Open-source </h2>
-            <h3 className="paragraph">Feel like the API is incomplete? Feel free to contribute!</h3>
+            <h3 className="benefits_paragraph">Feel like the API is incomplete? Feel free to contribute!</h3>
             <br />
             <h2 className="benefits">Extensive catalog</h2>
-            <h3 className="paragraph">Find your dream house in no time</h3>
+            <h3 className="benefits_paragraph">Find your dream house in no time</h3>
             <br />
           </div>
         </div>
@@ -67,15 +66,15 @@ class Home extends React.Component {
           <h1 className="title">Written in…</h1>
 
 
-          <img className="blue_div_img" src={require('./assets/mysql-icon.svg')} />
-          <img className="blue_div_img" src={require('./assets/nodejs-icon.png')} />
-          <img className="blue_div_img" src={require('./assets/reactjs-icon.png')} />
+          <img className="written_img" src={require('./assets/mysql-icon.svg')} />
+          <img className="written_img" src={require('./assets/nodejs-icon.png')} />
+          <img className="written_img" src={require('./assets/reactjs-icon.png')} />
         </div>
-
-        <h1 className="title">What are you waiting for?</h1>
-        <h2 className="paragraph_center">Find your next house, or go contribute!</h2>
-        <br />
-
+        <div className="bottom">
+          <h1 className="bottom_title">What are you waiting for?</h1>
+          <h2 className="bottom_paragraph">Find your next house, or go contribute!</h2>
+          <br />
+        </div>
         <h1 className="copyright">© Copyright by HackYourFuture 2019</h1>
 
       </div>)
