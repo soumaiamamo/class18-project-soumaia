@@ -62,9 +62,10 @@ const validHouse = (houseObject) => {
     errors.push(`location_city: wrongn`);
   }
 
-
-
-
+  if (!validator.isISO8601(`${houseObject['market_date']}`)) {
+    valid = false;
+    errors.push(`Date must be "year-month-day"`);
+  }
   return {
     valid,
     errors,

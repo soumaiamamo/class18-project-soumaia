@@ -1,0 +1,145 @@
+ .mainUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+}
+
+.mainli {
+  float: left;
+}
+
+.mainli a {
+  font-size: 24px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  padding-right: 140px;
+  text-decoration: none;
+  font-style: italic;
+  padding-left: 20px ; 
+}
+
+.houseUl{
+  list-style-type: none;
+  font-size: 24px;
+}
+.houseli{
+  text-decoration: none;
+  margin: 10px;
+}
+
+
+li a:hover {
+  background-color: #111;
+}
+
+.homePage{
+  text-align: center;
+ font-size : 60px;
+ font-style: italic;
+ color:plum;
+ margin-top: 5px;
+}
+
+.homeImg{
+  margin-top: -30px;
+}
+
+/* .listPage{
+  display: grid;
+  height: 40vh;
+  width:30%;
+  background-color: gray;
+  float: left;
+  text-align: center;
+} */
+
+.price{
+  width:20%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border:1px solid #000
+  
+}
+
+.room{
+  width:20%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border:1px solid #000
+}
+
+.priceMax{
+  width: 20%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border:1px solid #000
+}
+
+.city{
+  width:20%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border:1px solid #000
+}
+
+.order{
+  width:20%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border:1px solid #000
+}
+
+.mainList{
+  font-size: 18px;
+}
+
+.page{
+  padding-left: 380px;
+  padding-bottom: 20px;
+}
+
+#page{
+  float: left;
+  border: 1px solid #000;
+  padding: 5px;
+  margin: 5px;
+   
+}
+
+#page:hover {
+  color:red;
+  font-size:24px;
+  
+}
+
+.houses{
+  float: left;
+  width:50%;
+  text-decoration: none;
+}
+
+.contribute{
+  height: 300px;
+  width:300px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 250px;
+  border:2px solid #000;
+}
+
+.submit{
+  margin-left: 375px;
+  font-size: 24px;
+  border:1px solid #000;
+}
+
+.submit:hover{
+  color:red;
+  font-size:30px;
+}
