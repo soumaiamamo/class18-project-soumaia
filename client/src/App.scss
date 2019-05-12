@@ -178,7 +178,8 @@ margin-top : 0px ;
   background-color: #333;
   color : white; 
   padding : 30px; 
-  width:96%;    
+  width:100%; 
+  box-sizing: border-box ;  
 }
 
 .benefits{
@@ -233,7 +234,7 @@ margin-top : 0px ;
 
 }
 .written_img{
-  width : 25%;
+  width : 20%;
   margin :10px ;
   padding-left:70px;
  
@@ -248,7 +249,8 @@ margin-top : 0px ;
   
 padding : 50px ; 
 background-color : #E7F1F6;
-width : 92% ;
+// width : 92% ;
+box-sizing: border-box;
 }
 
 .background_img{
@@ -372,11 +374,11 @@ font-weight: bold;
   padding : 0px ;
 .features{
 
-  width : 100%;
+  width : 90%;
   display: flex ;
   flex-direction: column ;
   float : center ; 
-
+padding : 0px ;
 }
 
 .features_img{
@@ -393,7 +395,6 @@ font-weight: bold;
 
 .paragraph{
 width : 50px  ; 
-text-align : center ; 
 
 
 }
@@ -456,12 +457,7 @@ font-size : 15px ;
 
   }
   }
-.copyright {
-     width:84%;
-     float : none ;
-     font-size :20px ;
-      
-    }
+
 
                                      
           }

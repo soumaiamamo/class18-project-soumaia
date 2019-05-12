@@ -13,9 +13,8 @@ import "./App.js"
 class Home extends React.Component {
 
 
-  myFunction = () => {
+  handleClick = () => {
 
-    console.log("click submit");
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
       x.className += " responsive";
@@ -25,47 +24,16 @@ class Home extends React.Component {
   }
 
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     cl
-
-
-  //   };
-  //   onClick = () => {
-  //     var x = document.getElementById("myTopnav");
-  //     if (x.className === "topnav") {
-  //       x.className += " responsive";
-  //     } else {
-  //       x.className = "topnav";
-  //     }
-  //   }
-  // }
-
-
-
   render() {
 
     return (
       <div>
-
-        {/* <div class="topnav" id="myTopnav">
-          <a href="/" class="active">home</a>
-          <a href="/list/houses">houses</a>
-          <a href="/contribute">contribute</a>
-          <a href="/documentation">documentation</a>
-          <a href="javascript:void(0);" class="icon" onclick={this.onClick}>
-            <i class="fa fa-bars"></i>
-          </a>
-        </div> */}
-
-
         <div class="topnav" id="myTopnav">
           <a href="/" class="active">home</a>
           <a href="/list/houses">houses</a>
           <a href="/contribute">contribute</a>
           <a href="/documentation">documentation</a>
-          <a href="javascript:void(0);" class="icon" onClick={this.myFunction}>
+          <a href="javascript:void(0);" class="icon" onClick={this.handleClick}>
             <i class="fa fa-bars"></i>
           </a>
         </div>
