@@ -5,9 +5,9 @@ import ListHouses from "./ListHouses";
 import Documentation from "./Documentation";
 import AddHouses from './AddHouses';
 import "./App.scss";
+import "./toggle.scss";
 import "./Toggle.js";
 
-// import HandleClick from './HandleClick';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -31,10 +31,6 @@ class App extends Component {
         </Switch>
 
 
-
-        {/* </div>
- */}
-
       </Router >
 
     );
@@ -46,6 +42,8 @@ class App extends Component {
 
 
 export default App;
+
+
 
 
 
